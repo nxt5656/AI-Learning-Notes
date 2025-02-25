@@ -16,6 +16,7 @@
 注意: 可以不构建自己的镜像,直接使用现成镜像
 [构建学习环境镜像](.构建学习环境镜像.md)
 ### 1.3 启动学习环境容器
+
 ```shell
 docker run -d -p 8080:8888 -p 8022:22 ghcr.io/nxt5656/ai-learning-notes:latest
 ```
@@ -23,6 +24,7 @@ docker run -d -p 8080:8888 -p 8022:22 ghcr.io/nxt5656/ai-learning-notes:latest
 1. 通过chrome访问
 ```shell
 http://127.0.0.1:8080
+密码是: UserPas$0w
 ```
 
 ## 二. 直接在本机上开发
