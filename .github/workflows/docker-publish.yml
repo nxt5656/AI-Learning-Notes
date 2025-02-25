@@ -1,0 +1,29 @@
+name: Publish Docker Image
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and Push Docker Image
+        run: |
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/ai-learning-notes
+          docker build -t $IMAGE_NAME:latest -f ./0-学习环境的搭建/build/Dockerfile  .
+          # docker tag $IMAGE_NAME:latest $IMAGE_NAME:$GITHUB_SHA
+          docker push $IMAGE_NAME:latest
