@@ -24,6 +24,7 @@ RUN  conda init  bash && source /root/.bashrc
 RUN  conda create --name ai-learning-notes python=3.12
 
 FROM build_miniconda AS build_jupyterlab
+RUN conda install -n base nb_conda_kernels -y
 RUN conda install -n ai-learning-notes -c conda-forge jupyterlab jupyterlab-language-pack-zh-CN ipykernel && \
     conda run -n ai-learning-notes python -m ipykernel install --user --name=ai-learning-notes --display-name "Python (ai-learning-notes)"
 
