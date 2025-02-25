@@ -24,7 +24,7 @@ RUN  conda init  bash && source /root/.bashrc
 RUN  conda create --name AI-Learning-Notes python=3.12
 
 FROM build_miniconda AS build_jupyterlab
-RUN pip3 install jupyterlab
+RUN pip3 install jupyterlab jupyterlab-language-pack-zh-CN
 
 FROM build_jupyterlab AS base
 LABEL org.opencontainers.image.source=https://github.com/nxt5656/ai-learning-notes
