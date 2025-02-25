@@ -31,7 +31,7 @@ FROM build_jupyterlab AS base
 LABEL org.opencontainers.image.source=https://github.com/nxt5656/ai-learning-notes
 LABEL org.opencontainers.image.description="ai学习笔记"
 LABEL org.opencontainers.image.licenses=MIT
-WORKDIR /workspace/code
+WORKDIR /workspace
 ADD --chmod=600 0-学习环境的搭建/build/supervisord.conf /devops/supervisord.conf
 RUN mkdir /var/run/sshd
 RUN ssh-keygen -A
