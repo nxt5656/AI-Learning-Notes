@@ -18,7 +18,7 @@
 ### 1.3 启动学习环境容器
 
 ```shell
-docker run -d -p 8080:8888 -p 8022:22 ghcr.io/nxt5656/ai-learning-notes:latest
+docker run -d --name notes -p 8080:8888 -p 8022:22 ghcr.io/nxt5656/ai-learning-notes:latest
 ```
 ### 1.4 访问学习环境
 1. 通过chrome访问
