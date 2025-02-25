@@ -25,7 +25,7 @@ RUN  conda create --name ai-learning-notes python=3.12
 
 FROM build_miniconda AS build_jupyterlab
 RUN conda install -n ai-learning-notes -c conda-forge jupyterlab jupyterlab-language-pack-zh-CN ipykernel && \
-    python -m ipykernel install --user --name=ai-learning-notes --display-name "Python (ai-learning-notes)"
+    conda run -n ai-learning-notes python -m ipykernel install --user --name=ai-learning-notes --display-name "Python (ai-learning-notes)"
 
 FROM build_jupyterlab AS base
 LABEL org.opencontainers.image.source=https://github.com/nxt5656/ai-learning-notes
