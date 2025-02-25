@@ -21,10 +21,12 @@ ENV  PATH="/root/miniconda3/bin:${PATH}"
 RUN  mkdir -p /root/miniconda3 && wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /root/miniconda3/miniconda.sh
 RUN  bash /root/miniconda3/miniconda.sh -b -u -p /root/miniconda3 && rm -rf /root/miniconda3/miniconda.sh
 RUN  conda init  bash && source /root/.bashrc
-RUN  conda create --name AI-Learning-Notes python=3.12
+RUN  conda create --name ai-learning-notes python=3.12
 
 FROM build_miniconda AS build_jupyterlab
-RUN pip3 install jupyterlab jupyterlab-language-pack-zh-CN
+RUN conda activate ai-learning-notes
+RUN conda install jupyterlab jupyterlab-language-pack-zh-CN ipykernel
+RUN python -m ipykernel install --user --name=ai-learning-notes --display-name "Python (ai-learning-notes)"
 
 FROM build_jupyterlab AS base
 LABEL org.opencontainers.image.source=https://github.com/nxt5656/ai-learning-notes
