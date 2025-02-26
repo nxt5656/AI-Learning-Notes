@@ -27,7 +27,11 @@ FROM build_miniconda AS build_jupyterlab
 RUN conda install -n ai-learning-notes -c conda-forge jupyterlab jupyterlab-language-pack-zh-CN ipykernel && \
     conda run -n ai-learning-notes python -m ipykernel install --user --name=ai-learning-notes --display-name "Python (ai-learning-notes)"
 
-FROM build_jupyterlab AS base
+FROM build_jupyterlab AS build_pip
+ADD 0-学习环境的搭建/build/requirements.txt /devops/requirements.txt
+RUN /root/miniconda3/envs/ai-learning-notes/bin/pip install -r /devops/requirements.txt
+
+FROM build_pip AS base
 LABEL org.opencontainers.image.source=https://github.com/nxt5656/ai-learning-notes
 LABEL org.opencontainers.image.description="ai学习笔记"
 LABEL org.opencontainers.image.licenses=MIT
