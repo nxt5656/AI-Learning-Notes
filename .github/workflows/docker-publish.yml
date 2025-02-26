@@ -1,4 +1,4 @@
-name: Publish Docker Image
+name: 构建并推送容器镜像
 
 on:
   push:
@@ -15,13 +15,13 @@ jobs:
       contents: read
       packages: write
     steps:
-      - name: Checkout code
+      - name: 拉取代码
         uses: actions/checkout@v3
 
-      - name: Log in to GitHub Container Registry
+      - name: 登陆GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Build and Push Docker Image
+      - name: 构建并推送镜像
         run: |
           IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/ai-learning-notes
           docker build -t $IMAGE_NAME:latest -f ./0-学习环境的搭建/build/Dockerfile  .
