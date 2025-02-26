@@ -33,6 +33,7 @@ LABEL org.opencontainers.image.description="ai学习笔记"
 LABEL org.opencontainers.image.licenses=MIT
 WORKDIR /workspace
 ADD --chmod=600 0-学习环境的搭建/build/supervisord.conf /devops/supervisord.conf
+ADD --chmod=600 0-学习环境的搭建/build/jupyter_lab_config.py /devops/jupyter_lab_config.py
 RUN mkdir /var/run/sshd
 RUN ssh-keygen -A
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
