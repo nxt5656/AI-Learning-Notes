@@ -34,6 +34,7 @@ LABEL org.opencontainers.image.licenses=MIT
 WORKDIR /workspace
 ADD --chmod=600 0-学习环境的搭建/build/supervisord.conf /devops/supervisord.conf
 ADD --chmod=600 0-学习环境的搭建/build/jupyter_lab_config.py /devops/jupyter_lab_config.py
+ADD --chmod=600 0-学习环境的搭建/build/plugin.jupyterlab-settings /root/.jupyter/lab/user-settings/@jupyterlab/translation-extension/plugin.jupyterlab-settings
 RUN mkdir /var/run/sshd
 RUN ssh-keygen -A
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
